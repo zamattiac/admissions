@@ -1,0 +1,5 @@
+CREATE TABLE test-table (
+	column1 INTEGER;
+	column2 TEXT);
+
+INSERT INTO test-table VALUES 2,'hello';
