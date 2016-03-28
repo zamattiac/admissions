@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if (!isset($_SESSION['comp'])) {
+    if (!isset($_SESSION['name'])) {
     Header("Location: login.php");
     }
 ?>
@@ -13,7 +13,6 @@
                 background-color:yellow;
                 font-size:20px;
                 margin:10px;
-
                 }
             .id {
                 background-color:lightgreen;
@@ -24,7 +23,7 @@
                 background-color:lightblue;
                 padding:20px;
                 width:20vw;
-                float:left;
+
                 }
         </style>
     </head>
@@ -32,29 +31,41 @@
     <body>
 
     <div class="house box"> welcome, <?php echo $_SESSION['name']; ?> </div>
-    <?php echo '<a href="admin.php"><div class="house box"> admin tools </div></a>' ?>
     <?php
 
-    include "dbcxn.php";
+
 
         $name = $_SESSION['name'];
 
-        $query = "SELECT * FROM applications ORDER BY RAND() LIMIT 1";
+        $limit = 2;
+        $ID = 0;
+        $rank = 6;
+        $question1 = 7;
+        $question2 = 8;
+        $question3 = 9;
+        $house = 12;
+        $grader1 = 13;
+        $grader1grade = 14;
+        $grader2 = 15;
+        $grader2grade = 16;
 
-        $result = mysqli_query($conn, $query);
+        $apps = "apps.tsv";
+        $grading = "grading.tsv";
+        $file = fopen($grading, "r");
+        $grades = explode("\n", fread($file, filesize($grading)));
 
-        if (mysqli_num_rows($result) > 0) {
+        foreach ($grades as $grade) {
+            if (strlen($grade) < 10*$limit + 5 && strpos($grade, $name) != false) {
 
-            while($row = mysqli_fetch_assoc($result)) {
-                foreach ($row as $item) {
-                echo $item . '<br>';
-                }
+
+            $fields = explode("\t", $message);
+            if (!in_array($name, $fields)) {
+
+                echo '<div class="id box"> ID: '. $fields[$ID] .'</div>';
+                echo '<div class="preference box"> Preference: '. $fields[$rank] .'</div>';
+                echo '<div class="house box"> House: '. $fields[$house] .'</div>';
             }
         }
-        else {
-            echo "none left!";
-        }
-
 
         ?>
 
