@@ -1,3 +1,9 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="standard.css">
+        <title>login</title>
+    </head>
+
 <?php
     session_start();
     if (isset($_SESSION['comp'])) {
@@ -6,15 +12,11 @@
 
     else {
                     ?>
-        <html>
-        <head>
-            <title>login</title>
 
-        </head>
 
         <body>
             <h1>login.</h1>
-            <form method="POST" action="login.php">
+            <form class='house box' method="POST" action="login.php">
                 <input type="text" name="name_in" placeholder="your compid">
                 <input type="password" name="pass_in" placeholder="password">
                 <input type="submit">

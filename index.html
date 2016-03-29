@@ -8,25 +8,7 @@
 <html>
     <head>
         <title> grading </title>
-        <style>
-            .box {
-                background-color:yellow;
-                font-size:20px;
-                margin:10px;
-
-                }
-            .id {
-                background-color:lightgreen;
-                padding:20px;
-                width:20vw;
-                }
-            .house {
-                background-color:lightblue;
-                padding:20px;
-                width:20vw;
-                float:left;
-                }
-        </style>
+        <link rel="stylesheet" type="text/css" href="standard.css">
     </head>
 
     <body>
@@ -46,9 +28,13 @@
         if (mysqli_num_rows($result) > 0) {
 
             while($row = mysqli_fetch_assoc($result)) {
+                $currentID = $row['ID'];
+                echo '<div class="id box">';
                 foreach ($row as $item) {
+
                 echo $item . '<br>';
                 }
+                echo '</div>';
             }
         }
         else {
