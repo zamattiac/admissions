@@ -1,7 +1,8 @@
 <?php
 
     // must not allow double compid
-// check session for admin privilege
+
+    // get rid of admin tools for non-admins
 
     session_start();
     $current = $_SESSION['comp'];
@@ -33,8 +34,9 @@
             <input type="text" maxlength="30" name="new_name" placeholder="name (max 30)">
             <input type="text" maxlength="6" name="new_comp" placeholder="compid (max 6)">
             <input type="password" maxlength="10" name="new_pass" placeholder="password (max 10)">
-            <input type="checkbox" name="new_priv">admin priv
+            <input type="checkbox" name="new_priv" value="yes">admin priv
             <input type="submit">
+            <h6 style="margin:0;">use a password entirely unique from other services</h6>
         </form>
 
 

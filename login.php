@@ -1,4 +1,5 @@
 <html>
+    <!-- LOGIN PAGE -->
     <head>
         <link rel="stylesheet" type="text/css" href="standard.css">
         <title>login</title>
@@ -6,8 +7,15 @@
 
 <?php
     session_start();
-    if (isset($_SESSION['comp'])) {
-    Header("Location: index.html");
+    if (isset($_GET['logout'])) {
+        unset($_GET['logout']);
+        unset($_SESSION['comp']);
+        unset($_SESSION['name']);
+        Header("Location: login.php");
+    }
+
+    elseif (isset($_SESSION['comp'])) {
+        Header("Location: index.html");
     }
 
     else {
