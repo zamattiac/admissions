@@ -1,5 +1,8 @@
 <?php
 
+    /* Don't use this!
+        Sequel Pro will upload the Excel file! */
+
     include 'dbcxn.php';
 
     $sql = "LOAD DATA INFILE 'data.txt'

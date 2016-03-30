@@ -15,12 +15,16 @@
 
     <div class="house box"> welcome, <?php echo $_SESSION['name']; ?> </div>
     <?php echo '<a href="admin.php"><div class="house box"> admin tools </div></a>' ?>
+    <a href="login.php?logout=1"><div class="house box">logout</div></a>
     <?php
 
     include "dbcxn.php";
 
         $name = $_SESSION['name'];
+        $comp = $_SESSION['comp'];
 
+
+        // SELECT ONE APPLICATION (grade status not developed)
         $query = "SELECT * FROM applications ORDER BY RAND() LIMIT 1";
 
         $result = mysqli_query($conn, $query);
@@ -30,12 +34,30 @@
             while($row = mysqli_fetch_assoc($result)) {
                 $currentID = $row['ID'];
                 echo '<div class="id box">';
-                foreach ($row as $item) {
-
-                echo $item . '<br>';
-                }
+                echo 'Preference: ' . $row['PREFERENCE'];
+                echo '<br><br>Q1: ' . $row['Q1'];
+                echo '<br><br>Q2: ' . $row['Q2'];
+                echo '<br><br>House: ' . $row['HOUSE'];
                 echo '</div>';
             }
+
+            $form = '<form name="' . $currentID . '" method="get" action="index.html">
+                <input type="radio" name="' . $currentID . '" value="1">1
+                <input type="radio" name="' . $currentID . '" value="2">2
+                <input type="radio" name="' . $currentID . '" value="3">3
+                <input type="radio" name="' . $currentID . '" value="4">4
+                <input type="radio" name="' . $currentID . '" value="5">5
+                <input type="radio" name="' . $currentID . '" value="6">6
+                <input type="radio" name="' . $currentID . '" value="7">7
+                <input type="radio" name="' . $currentID . '" value="8">8
+                <input type="radio" name="' . $currentID . '" value="9">9
+                <input type="radio" name="' . $currentID . '" value="10">10
+            <input type="hidden" name="grader" value="' . $comp . '">
+            <input type="submit">
+            </form>';
+
+            echo $form;
+
         }
         else {
             echo "none left!";
@@ -43,6 +65,7 @@
 
 
         ?>
+
 
     </body>
 </html>

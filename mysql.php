@@ -1,5 +1,7 @@
 <?php
 
+    // this is an example file of a proper sql setup
+
     include 'dbcxn.php';
 
     $sql = 'SELECT * FROM graders';

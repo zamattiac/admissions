@@ -1,5 +1,8 @@
 <?php
 
+    /* connects to admissions database,
+        include in relevant files */
+
     $servername = 'localhost';
     $username = 'root';
     $password = '';
