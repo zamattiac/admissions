@@ -1,13 +1,10 @@
 <?php
 
-    // must not allow double compid
-
-    // get rid of admin tools for non-admins
-
     session_start();
     $current = $_SESSION['comp'];
 
     include 'dbcxn.php';
+    include 'view_database.php';
 
     $query = "SELECT * FROM graders WHERE Comp = '" . $current . "' AND Priv = 1 LIMIT 1;";
     $result = mysqli_query($conn, $query);
@@ -39,6 +36,17 @@
             <input type="submit">
             <h6 style="margin:0;">your password is visible to admins; choose wisely</h6>
         </form>
+
+        <!-- VIEW USERS -->
+        <div class="box">
+        <?php
+
+            view('graders',['Name', 'Pass']);
+
+            ?>
+        </div>
+
+
 
 
 <?php

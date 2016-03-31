@@ -1,6 +1,4 @@
 <?php
-
-    //fix adding
     include 'dbcxn.php';
 
     $grader = $_GET['grader'];
@@ -16,6 +14,8 @@
 
     if (mysqli_num_rows($result) > 0) {
 
+
+        /* ADD TO RELEVANT EMPTY COLUMN */
         while($row = mysqli_fetch_assoc($result)) {
             if ($row['GRADER1'] != $grader && $row['GRADER2'] != $grader){
                 if ($row['GRADER1'] == '') {
