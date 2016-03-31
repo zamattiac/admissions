@@ -10,14 +10,18 @@
         $result = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($result) > 0) {
-            while($row = mysqli_fetch_assoc($result)) {
-
-                foreach ($columns as $entry) {
-                    echo $entry . ': ' . $row[$entry] . '   ';
-                }
-                echo '<br>';
-
+            echo '<table>';
+            foreach ($columns as $entry) {
+                echo '<th>' . $entry . '</th>';
             }
+            while($row = mysqli_fetch_assoc($result)) {
+                echo '<tr>';
+                foreach ($columns as $entry) {
+                    echo '<th>' . $row[$entry] . '   </th>';
+                }
+                echo '</tr>';
+            }
+            echo '</table>';
         }
 
     }

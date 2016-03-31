@@ -58,6 +58,10 @@ input[type="radio"] {
     margin-left:20px;
 }
 
+table, th, td {
+   border: 1px solid black;
+}
+
 /* RADIO BUTTON */
 
 /* END OF RADIO BUTTON */
