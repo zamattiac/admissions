@@ -18,7 +18,9 @@
 
     utilities to fix:
 
-    unpriv user can access admin
+    fixed - password causes name??
+    adding same user twice
+
 
 
     utilities to add:
@@ -26,6 +28,6 @@
     view graded applications in admin
     yes/no in admin
 
-    relate the applications and graded table
-    put in rating form on grading page
-    verify that application has received <2 grades, neither by the grader
+    No - relate the applications and graded table
+    done - put in rating form on grading page
+    fixed - verify that application has received <2 grades, neither by the grader
