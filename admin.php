@@ -27,6 +27,7 @@
 
     <body>
         <div class="house box"> <?php echo $current;?>'s admin tools </div>
+        <a href="index.html"><div class="house box"> back home </div></a>
 
         <!-- ADD USER -->
         <form class="house box" name="new_user" method="POST" action="add_user.php">
@@ -36,7 +37,7 @@
             <input type="password" maxlength="10" name="new_pass" placeholder="password (max 10)">
             <input type="checkbox" name="new_priv" value="yes">admin priv
             <input type="submit">
-            <h6 style="margin:0;">use a password entirely unique from other services</h6>
+            <h6 style="margin:0;">your password is visible to admins; choose wisely</h6>
         </form>
 
 

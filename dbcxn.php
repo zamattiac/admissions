@@ -1,7 +1,10 @@
 <?php
 
+    // servername, username,  and password must be changed prior to launch
+
     /* connects to admissions database,
         include in relevant files */
+
 
     $servername = 'localhost';
     $username = 'root';
@@ -18,7 +21,9 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-//$result = mysqli_query($conn, $sql);
+    /* SAMPLE RETURN ANALYSIS IN PHP */
+
+    //$result = mysqli_query($conn, $sql);
 
     //if (mysqli_num_rows($result) > 0) {
     // output data of each row

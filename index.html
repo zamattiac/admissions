@@ -14,18 +14,28 @@
     <body>
 
     <div class="house box"> welcome, <?php echo $_SESSION['name']; ?> </div>
-    <?php echo '<a href="admin.php"><div class="house box"> admin tools </div></a>' ?>
-    <a href="login.php?logout=1"><div class="house box">logout</div></a>
     <?php
-
-    include "dbcxn.php";
+        include "dbcxn.php";
 
         $name = $_SESSION['name'];
         $comp = $_SESSION['comp'];
 
+        $query = "SELECT * FROM graders WHERE Comp = '" . $comp . "' AND Priv = 1 LIMIT 1;";
+        $result = mysqli_query($conn, $query);
 
-        // SELECT ONE APPLICATION (grade status not developed)
-        $query = "SELECT * FROM applications ORDER BY RAND() LIMIT 1";
+        if (mysqli_num_rows($result) != 0) {
+            echo '<a href="admin.php"><div class="house box"> admin tools </div></a>';
+        }
+    ?>
+    <a href="login.php?logout=1"><div class="house box">logout</div></a>
+    <?php
+
+        /* there is no way to prevent several people from reading one application at once */
+        // SELECT ONE APPLICATION (grade status developed)
+        // VERIFY NOT GRADED BY √
+
+        $query = "SELECT * FROM applications WHERE GRADER2 IS NULL  AND (GRADER1!= '" . $comp . "' OR GRADER1 IS NULL) ORDER BY RAND() LIMIT 1;";
+        //echo $query;
 
         $result = mysqli_query($conn, $query);
 
@@ -37,22 +47,24 @@
                 echo 'Preference: ' . $row['PREFERENCE'];
                 echo '<br><br>Q1: ' . $row['Q1'];
                 echo '<br><br>Q2: ' . $row['Q2'];
-                echo '<br><br>House: ' . $row['HOUSE'];
+                echo '<br><br>House: ' . $row['HOUSE'] . '<br>ID: ' . $row['ID'];
                 echo '</div>';
             }
 
-            $form = '<form name="' . $currentID . '" method="get" action="index.html">
-                <input type="radio" name="' . $currentID . '" value="1">1
-                <input type="radio" name="' . $currentID . '" value="2">2
-                <input type="radio" name="' . $currentID . '" value="3">3
-                <input type="radio" name="' . $currentID . '" value="4">4
-                <input type="radio" name="' . $currentID . '" value="5">5
-                <input type="radio" name="' . $currentID . '" value="6">6
-                <input type="radio" name="' . $currentID . '" value="7">7
-                <input type="radio" name="' . $currentID . '" value="8">8
-                <input type="radio" name="' . $currentID . '" value="9">9
-                <input type="radio" name="' . $currentID . '" value="10">10
+            $form = '<form name="score" method="get" action="grading.php">
+			<input type="radio" id="1" name="score" class="radio" value="1"><label for="1"> 1 </label>
+			<input type="radio" id="2" name="score" class="radio" value="2"><label for="2"> 2 </label>
+			<input type="radio" id="3" name="score" class="radio" value="3"><label for="3"> 3 </label>
+			<input type="radio" id="4" name="score" class="radio" value="4"><label for="4"> 4 </label>
+			<input type="radio" id="5" name="score" class="radio" value="5"><label for="5"> 5 </label>
+			<input type="radio" id="6" name="score" class="radio" value="6"><label for="6"> 6 </label>
+			<input type="radio" id="7" name="score" class="radio" value="7"><label for="7"> 7 </label>
+			<input type="radio" id="8" name="score" class="radio" value="8"><label for="8"> 8 </label>
+			<input type="radio" id="9" name="score" class="radio" value="9"><label for="9"> 9 </label>
+			<input type="radio" id="10" name="score" class="radio" value="10"><label for="10"> 10 </label>
+
             <input type="hidden" name="grader" value="' . $comp . '">
+            <input type="hidden" name="application" value="' . $currentID . '">
             <input type="submit">
             </form>';
 
