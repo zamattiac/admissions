@@ -1,0 +1,33 @@
+                 _           _                 _
+ _ __  _ __ ___ (_) ___  ___| |_   _ __   ___ | |_ ___  ___
+| '_ \| '__/ _ \| |/ _ \/ __| __| | '_ \ / _ \| __/ _ \/ __|
+| |_) | | | (_) | |  __/ (__| |_  | | | | (_) | ||  __/\__ \
+| .__/|_|  \___// |\___|\___|\__| |_| |_|\___/ \__\___||___/
+|_|           |__/
+
+
+    SETUP:
+
+    This project used Sequel Pro to create a sql from an excel file.
+
+    aesthetic to fix:
+
+    damn check box
+    general prettiness
+
+
+    utilities to fix:
+
+    fixed - password causes name??
+    adding same user twice
+
+
+
+    utilities to add:
+
+    view graded applications in admin
+    yes/no in admin
+
+    No - relate the applications and graded table
+    done - put in rating form on grading page
+    fixed - verify that application has received <2 grades, neither by the grader

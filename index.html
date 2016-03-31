@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if (!isset($_SESSION['name'])) {
+    if (!isset($_SESSION['comp'])) {
     Header("Location: login.php");
     }
 ?>
@@ -8,66 +8,76 @@
 <html>
     <head>
         <title> grading </title>
-        <style>
-            .box {
-                background-color:yellow;
-                font-size:20px;
-                margin:10px;
-                }
-            .id {
-                background-color:lightgreen;
-                padding:20px;
-                width:20vw;
-                }
-            .house {
-                background-color:lightblue;
-                padding:20px;
-                width:20vw;
-
-                }
-        </style>
+        <link rel="stylesheet" type="text/css" href="standard.css">
     </head>
 
     <body>
 
     <div class="house box"> welcome, <?php echo $_SESSION['name']; ?> </div>
     <?php
-
-
+        include "dbcxn.php";
 
         $name = $_SESSION['name'];
+        $comp = $_SESSION['comp'];
 
-        $limit = 2;
-        $ID = 0;
-        $rank = 6;
-        $question1 = 7;
-        $question2 = 8;
-        $question3 = 9;
-        $house = 12;
-        $grader1 = 13;
-        $grader1grade = 14;
-        $grader2 = 15;
-        $grader2grade = 16;
+        $query = "SELECT * FROM graders WHERE Comp = '" . $comp . "' AND Priv = 1 LIMIT 1;";
+        $result = mysqli_query($conn, $query);
 
-        $apps = "apps.tsv";
-        $grading = "grading.tsv";
-        $file = fopen($grading, "r");
-        $grades = explode("\n", fread($file, filesize($grading)));
+        if (mysqli_num_rows($result) != 0) {
+            echo '<a href="admin.php"><div class="house box"> admin tools </div></a>';
+        }
+    ?>
+    <a href="login.php?logout=1"><div class="house box">logout</div></a>
+    <?php
 
-        foreach ($grades as $grade) {
-            if (strlen($grade) < 10*$limit + 5 && strpos($grade, $name) != false) {
+        /* there is no way to prevent several people from reading one application at once */
+        // SELECT ONE APPLICATION (grade status developed)
+        // VERIFY NOT GRADED BY √
 
+        $query = "SELECT * FROM applications WHERE GRADER2 IS NULL  AND (GRADER1!= '" . $comp . "' OR GRADER1 IS NULL) ORDER BY RAND() LIMIT 1;";
+        //echo $query;
 
-            $fields = explode("\t", $message);
-            if (!in_array($name, $fields)) {
+        $result = mysqli_query($conn, $query);
 
-                echo '<div class="id box"> ID: '. $fields[$ID] .'</div>';
-                echo '<div class="preference box"> Preference: '. $fields[$rank] .'</div>';
-                echo '<div class="house box"> House: '. $fields[$house] .'</div>';
+        if (mysqli_num_rows($result) > 0) {
+
+            while($row = mysqli_fetch_assoc($result)) {
+                $currentID = $row['ID'];
+                echo '<div class="id box">';
+                echo 'Preference: ' . $row['PREFERENCE'];
+                echo '<br><br>Q1: ' . $row['Q1'];
+                echo '<br><br>Q2: ' . $row['Q2'];
+                echo '<br><br>House: ' . $row['HOUSE'] . '<br>ID: ' . $row['ID'];
+                echo '</div>';
             }
+
+            $form = '<form name="score" method="get" action="grading.php">
+			<input type="radio" id="1" name="score" class="radio" value="1"><label for="1"> 1 </label>
+			<input type="radio" id="2" name="score" class="radio" value="2"><label for="2"> 2 </label>
+			<input type="radio" id="3" name="score" class="radio" value="3"><label for="3"> 3 </label>
+			<input type="radio" id="4" name="score" class="radio" value="4"><label for="4"> 4 </label>
+			<input type="radio" id="5" name="score" class="radio" value="5"><label for="5"> 5 </label>
+			<input type="radio" id="6" name="score" class="radio" value="6"><label for="6"> 6 </label>
+			<input type="radio" id="7" name="score" class="radio" value="7"><label for="7"> 7 </label>
+			<input type="radio" id="8" name="score" class="radio" value="8"><label for="8"> 8 </label>
+			<input type="radio" id="9" name="score" class="radio" value="9"><label for="9"> 9 </label>
+			<input type="radio" id="10" name="score" class="radio" value="10"><label for="10"> 10 </label>
+
+            <input type="hidden" name="grader" value="' . $comp . '">
+            <input type="hidden" name="application" value="' . $currentID . '">
+            <input type="submit">
+            </form>';
+
+            echo $form;
+
+        }
+        else {
+            echo "none left!";
         }
 
+
         ?>
+
 
     </body>
 </html>
