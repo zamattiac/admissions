@@ -9,7 +9,7 @@
     $new_comp = $_POST['new_comp'];
     $new_pass = $_POST['new_pass'];
 
-    // redundancy check (not working)
+    // redundancy check (working)
 
     $sql = 'SELECT * FROM graders WHERE Comp="' . $new_comp . '";';
 //    echo $sql;
