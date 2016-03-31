@@ -1,6 +1,6 @@
 <?php
 
-/* WORKING ? */
+/*working*/
 /* ADD USER TO GRADERS DB */
 
     include 'dbcxn.php';
@@ -11,8 +11,11 @@
 
     // redundancy check (not working)
 
-    //$sql = 'SELECT * FROM graders WHERE Comp="' . $new_comp . '";';
-    //if (!$result) {
+    $sql = 'SELECT * FROM graders WHERE Comp="' . $new_comp . '";';
+//    echo $sql;
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) == 0) {
 
         if ($_POST['new_priv'] === 'yes') {
 
@@ -42,7 +45,7 @@
                     $result = mysqli_query($conn, $query);
 
                 }
-        //}
+        }
 
    Header("Location: admin.php");
 
