@@ -31,6 +31,7 @@
     <?php
 
         /* there is no way to prevent several people from reading one application at once */
+
         // SELECT ONE APPLICATION (grade status developed)
         // VERIFY NOT GRADED BY √
 
@@ -41,6 +42,9 @@
 
         if (mysqli_num_rows($result) > 0) {
 
+            /*
+                Alter to your form's needs
+                                */
             while($row = mysqli_fetch_assoc($result)) {
                 $currentID = $row['ID'];
                 echo '<div class="id box">';
@@ -72,7 +76,7 @@
 
         }
         else {
-            echo "none left!";
+            echo "<div class='box'>None left!</div>";
         }
 
 
