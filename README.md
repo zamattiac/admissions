@@ -7,11 +7,11 @@ This system is used by the International Residential College at the University o
 
 ###Process:
 
-  1- Login. PHP session is used to manage logged-inness. Login checks sign in through the 'graders' table.<br>
-  2- Displaying application. Every application contains metadata about its grading history. It chooses one application with vacant grades       and no history of that particular user.<br>
-  3- Grade. The page echos a radio form for grade options. They are submitted via GET to grading.php, where the grade and its grader are       slotted into the row corresponding to the application.<br>
-  4- No more! When there are no options for a user to grade, they are done. Logout if desired.<br>
-  5- Admin. Administrators can add users and view results of the applications grading.
+  1)  Login. PHP session is used to manage logged-inness. Login checks sign in through the 'graders' table.<br>
+  2)  Displaying application. Every application contains metadata about its grading history. It chooses one application with vacant grades       and no history of that particular user.<br>
+  3)  Grade. The page echos a radio form for grade options. They are submitted via GET to grading.php, where the grade and its grader are       slotted into the row corresponding to the application.<br>
+  4)  No more! When there are no options for a user to grade, they are done. Logout if desired.<br>
+  5)  Admin. Administrators can add users and view results of the applications grading.
 
 ## Available for you to configure:
 
@@ -25,8 +25,8 @@ Sample data is included in thie repo, and this edition uses localhost/root.
 
 ###Your people:
 Change the number of graders by adding columns to the application table and:
-  - change the 'select one application' comment on index.html 
-  - line ~20 of grading.php for allocation of the new grade.<br>
+Change the 'select one application' comment on index.html 
+Change line ~20 of grading.php for allocation of the new grade.<br>
 Grant users admin privileges to add others and view results from grading. (adduser.php).<br>
 Create accounts for innumerate users using some ID system. Will not add an ID twice.<br>
 
