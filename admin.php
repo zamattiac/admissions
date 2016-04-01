@@ -38,12 +38,14 @@
         </form>
 
         <!-- VIEW USERS -->
-        <div class="box">
-        <?php
+        <div class="id box">
+            <?php view('graders',['Name', 'Pass']); ?>
+        </div>
 
-            view('graders',['Name', 'Pass']);
-
-            ?>
+        <!-- VIEW RESULTS -->
+        <div class="id box">
+            <h4> Results and Average Scores </h4>
+            <?php view('applications', ['ID', 'COMP ID', 'SCORE1', 'SCORE2']); ?>
         </div>
 
 

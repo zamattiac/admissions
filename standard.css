@@ -58,8 +58,17 @@ input[type="radio"] {
     margin-left:20px;
 }
 
-table, th, td {
-   border: 1px solid black;
+th, td {
+   border-bottom: 1px solid black;
+
+   padding:10px;
+   text-align:left;
+}
+
+img {
+    height:70px;
+    margin:10px;
+    margin-left:10px;
 }
 
 /* RADIO BUTTON */
