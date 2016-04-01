@@ -21,6 +21,8 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
+    echo " <footer style='position:fixed;bottom:0px;right:0px;'><img src='irc.png'><img src='uva.png'><br><a href='//internationalresidentialcollege.com'>intl res col</a> • 2016 • <a href='//github.com/zamattiac/admissions'>github repository</a></footer>";
+
     /* SAMPLE RETURN ANALYSIS IN PHP */
 
     //$result = mysqli_query($conn, $sql);
