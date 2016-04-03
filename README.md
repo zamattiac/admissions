@@ -3,7 +3,7 @@
 This is a rating/grading system for a database of entries.<br>
 Requires MySQL server, Apache server, can be modeled through XAMPP.<br>
 This system is used by the International Residential College at the University of Virginia.
-####Site: people.virginia.edu/~mak2vr/admissions (requires login)
+####Site: requires login. Try user 'sudo' and no password. 
 
 ###Process:
 
